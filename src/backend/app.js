@@ -96,7 +96,7 @@ router.get('/last-meals', async (req, res) => {
    `
     );
     if (lastMeals.length === 0) {
-      res.status(400).json({ error: 'There are no meals' });
+      res.status().json({ error: 'There are no meals' });
 mea    }
     res.json(lastMeals);
   } catch (error) {
