@@ -97,7 +97,7 @@ router.get('/last-meals', async (req, res) => {
     );
     if (lastMeals.length === 0) {
       res.status(404).json({ error: 'There are no meals' });
-    }
+mea    }
     res.json(lastMeals);
   } catch (error) {
     throw error;
@@ -116,3 +116,4 @@ app.use('*', (req, res) => {
 });
 
 module.exports = app;
+ ///Users/dimakutaini/Desktop/dima-hyf/meal-sharing/src/backend/app.js
