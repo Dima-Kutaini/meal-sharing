@@ -22,7 +22,7 @@ app.use(express.json());
 app.use(cors());
 router.use('/meals', mealsRouter);
 
-router.get('/', (req, res) => {
+router.get('/meals', (req, res) => {
   res.send('Hi friend');
 });
 //Respond with all meals in the future
