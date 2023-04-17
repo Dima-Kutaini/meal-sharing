@@ -23,7 +23,7 @@ app.use(cors());
 router.use('/meals', mealsRouter);
 
 router.get('/meals', (req, res) => {
-  res.send('Hi friend');
+  res.send('Hi friends');
 });
 //Respond with all meals in the future
 //(relative to the when datetime):
@@ -80,7 +80,7 @@ router.get('/first-meals', async (req, res) => {
    `
     );
     if (firstMeals.length === 0) {
-      res.status(404).json({ error: 'There are no meals' });
+      res.status(400).json({ error: 'There are no meals' });
     }
     res.json(firstMeals);
   } catch (error) {
