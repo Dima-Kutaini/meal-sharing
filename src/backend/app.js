@@ -20,9 +20,7 @@ app.use(express.json());
 app.use(cors());
 
 router.use("/meals", mealsRouter);
-router.get('/', (req, res) => {
-  res.send('Hi friend');
-});
+
 //Respond with all meals in the future
 //(relative to the when datetime):
 router.get('/future-meals', async (req, res) => {
@@ -48,8 +46,6 @@ router.get('/past-meals', async (req, res) => {
   SELECT * FROM meals
    WHERE date < NOW()`
     );
-
-    router.use('/meals', mealsRouter);
     res.json(pastMeals);
   } catch (error) {
     throw error;
@@ -79,7 +75,7 @@ router.get('/first-meals', async (req, res) => {
    `
     );
     if (firstMeals.length === 0) {
-      res.status(404).json({ error: 'There are no meals' });
+      res.status(400).json({ error: 'There are no meals' });
     }
     res.json(firstMeals);
   } catch (error) {
@@ -95,7 +91,7 @@ router.get('/last-meals', async (req, res) => {
    `
     );
     if (lastMeals.length === 0) {
-      res.status(404).json({ error: 'There are no meals' });
+      res.status(400).json({ error: 'There are no meals' });
     }
     res.json(lastMeals);
   } catch (error) {
