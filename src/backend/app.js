@@ -3,12 +3,15 @@
 const express = require('express');
 const app = express();
 const router = express.Router();
+const reservationRouter = express.Router();
 const path = require('path');
 const knex = require('./database');
 const mealsRouter = require('./api/meals');
+const reservationsRouter = require('./api/reservation');
 const buildPath = path.join(__dirname, '../../dist');
 const port = process.env.PORT || 3000;
 const cors = require('cors');
+ const reviewRouter= require('./api/review'); 
 
 // For week4 no need to look into this!
 // Serve the built client html
@@ -21,12 +24,15 @@ app.use(express.json());
 
 app.use(cors());
 router.use('/meals', mealsRouter);
+router.use('/Reservation', reservationsRouter);
+router.use('/review', reviewRouter); 
 
-router.get('/', (req, res) => {
+
+
+router.get('/meals', (req, res) => {
   res.send('Hi friend');
 });
 //Respond with all meals in the future
-//(relative to the when datetime):
 router.get('/future-meals', async (req, res) => {
   try {
     //const NOW = new Date();
@@ -41,7 +47,7 @@ router.get('/future-meals', async (req, res) => {
   }
 });
 //Respond with all meals in the past
-//(relative to the when datetime):
+
 router.get('/past-meals', async (req, res) => {
   try {
     //const now = new Date();
@@ -62,7 +68,7 @@ router.get('/all-meals', async (req, res) => {
     const allMeals = await knex.raw(
       `
   SELECT * FROM meals
-  ORDER BY idmeals
+  ORDER BY id
    `
     );
     res.json(allMeals);
@@ -76,7 +82,7 @@ router.get('/first-meals', async (req, res) => {
     const firstMeals = await knex.raw(
       `
   SELECT * FROM meals
-  WHERE idmeals=( SELECT MIN(idmeals) FROM  meals)
+  WHERE id=( SELECT MIN(id) FROM  meals)
    `
     );
     if (firstMeals.length === 0) {
@@ -92,7 +98,7 @@ router.get('/last-meals', async (req, res) => {
     const lastMeals = await knex.raw(
       `
   SELECT * FROM meals
-  WHERE idmeals=( SELECT MAX(idmeals) FROM  meals)
+  WHERE id=( SELECT MAX(id) FROM  meals)
    `
     );
     if (lastMeals.length === 0) {
