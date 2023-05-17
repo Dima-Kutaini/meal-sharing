@@ -116,9 +116,9 @@ mealsRouter.get('/', async (req, res) => {
 
     // Returns all meals that still have available spots left, if true. If false, return meals that have no available spots left.1
     if (availableReservations === 'true') {
-      query = query.where('availableSpots', '>', 0);
+      query = query.where('available', '>', 0);
     } else if (availableReservations === 'false') {
-      query = query.where('availableSpots', '=', 0);
+      query = query.where('available', '=', 0);
     }
 
     // Returns all meals that partially match the given title.
@@ -129,32 +129,31 @@ mealsRouter.get('/', async (req, res) => {
 
     // Returns all meals where the date for when is after the given date.
     if (dateAfter) {
-      query = query.where('date', '>', new Date(dateAfter));
+      query = query.where('when', '>', new Date(dateAfter));
     }
 
     // Returns all meals where the date for when is before the given date.
     if (dateBefore) {
-      query = query.where('date', '<', new Date(dateBefore));
+      query = query.where('when', '<', new Date(dateBefore));
     }
-
-    //Returns all meals sorted by the given key.
-    // Allows when, max_reservations and price as keys. 
-    //Default sorting order is asc(ending).
-    if (sortKey) {
-      let column;
-      if (sortKey === 'when') {
-        column = 'date';
-      } else if (sortKey === 'max_reservations') {
-        column = 'availableSpots';
-      } else if (sortKey === 'price') {
-        column = 'price';
-      }
-      query = query.orderBy(column, sortDir === 'desc' ? 'desc' : 'asc');
-    }
-
     // Returns the given number of meals.
     if (limit) {
       query = query.limit(parseInt(limit));
+    }
+
+    //Returns all meals sorted by the given key.
+    // Allows when, max_reservations and price as keys.
+    //Default sorting order is asc(ending).
+    if (sortKey) {
+      let sortedMeals;
+      if (sortKey === 'when') {
+        sortedMeals = 'when';
+      } else if (sortKey === 'max_reservations') {
+        sortedMeals = 'availableSpots';
+      } else if (sortKey === 'price') {
+        sortedMeals = 'price';
+      }
+      query = query.orderBy(sortedMeals, sortDir === 'desc' ? 'desc' : 'asc');
     }
 
     // Execute the query and return the result
@@ -166,5 +165,7 @@ mealsRouter.get('/', async (req, res) => {
   }
 
 });
+
+
 
 module.exports = mealsRouter;

@@ -16,8 +16,8 @@ reviewRouter.get('/', async (req, res) => {
 });
 
 //Return all reviews for a specific meal
-reviewRouter.post('/', async (req, res) => {
-  const id = parseInt(req.params.id);
+reviewRouter.get('/:meal_id/review', async (req, res) => {
+  const id = parseInt(req.params.meal_id);
   try {
     const allReviews = await knex
       .select()
@@ -68,7 +68,7 @@ reviewRouter.post('/:id', async (req, res) => {
   } catch (error) {
     res
       .status(500)
-      .json({ error: 'An error occurred: unable to add a new review!' });
+      .json({ error: 'An error is  occurred: unable to add a new review!' });
   }
 });
  // i tried and inserted this review by postman and it worked :)
@@ -141,11 +141,11 @@ reviewRouter.delete('/:id', async (req, res) => {
     if (deletedReview.length === 0) {
       res.status(404).send('Review not deleted');
     } else {
-      res.status(200).send('Review is deleted');
+      res.status(200).send('Review is deleted successfully' );
     }
   } catch (error) {
     console.log(error);
-    res.status(500).send('Error occurred!');
+    res.status(500).send('An error is occurred!');
   }
 });
 

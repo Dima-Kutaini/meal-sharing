@@ -10,7 +10,7 @@ reservationRouter.get('/', async (req, res) => {
     res.json(allReservations);
   } catch (error) {
     console.log(error);
-    res.status(500).send('Error occurrede!');
+    res.status(500).send('An error is  occurred!');
   }
 });
 
@@ -88,7 +88,7 @@ reservationRouter.delete('/:id', async (req, res) => {
     if (deletedReservation.length === 0) {
       res.status(404).send('Reservation not deleted');
     } else {
-      res.status(200).send('Deleted Reservation');
+      res.status(200).send(' Reservation is deleted successfully');
     }
   } catch (error) {
     console.log(error);

@@ -1,3 +1,42 @@
 * {
     box-sizing: border-box;
+  
+   
+}
+.body{
+   margin: 0;
+   width: 100%;
+
+}
+.nav{
+    color: black;
+    display: flex;
+    justify-content:space-between ;
+    align-items: center;
+    gap: 2rem;
+    padding:0 1rem; 
+}
+.nav ul{
+
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    display: flex;
+    gap: 1rem; 
+
+}
+.title{
+    font-size:30px ;
+    font-family: Apple Chancery;
+}
+.nav a{
+    color: inherit;
+    text-decoration:none ;
+    height: 100%;
+    align-items: center;
+    padding: .25rem;
+
+}
+.nav li:hover{
+    background-color:rgb(140, 139, 138);
 }
