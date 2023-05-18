@@ -9,7 +9,8 @@ const mealsRouter = require('./api/meals');
 const buildPath = path.join(__dirname, '../../dist');
 const port = process.env.PORT || 3000;
 const cors = require('cors');
-
+const reviewRouter = require('./api/review');
+const reservationRouter = require('./api/reservation');
 // For week4 no need to look into this!
 // Serve the built client html
 app.use(express.static(buildPath));
@@ -21,6 +22,8 @@ app.use(express.json());
 
 app.use(cors());
 router.use('/meals', mealsRouter);
+router.use('/review', reviewRouter);
+router.use('/reservation', reservationRouter);
 
 router.get('/', (req, res) => {
   res.send('Hi friend');
@@ -33,7 +36,7 @@ router.get('/future-meals', async (req, res) => {
     const futureMeals = await knex.raw(
       `
   SELECT * FROM meals
-   WHERE date > NOW()`
+   WHERE when > NOW()`
     );
     res.json(futureMeals);
   } catch (error) {
@@ -48,7 +51,7 @@ router.get('/past-meals', async (req, res) => {
     const pastMeals = await knex.raw(
       `
   SELECT * FROM meals
-   WHERE date < NOW()`
+   WHERE when < NOW()`
     );
 
     res.json(pastMeals);
@@ -62,7 +65,7 @@ router.get('/all-meals', async (req, res) => {
     const allMeals = await knex.raw(
       `
   SELECT * FROM meals
-  ORDER BY idmeals
+  ORDER BY id
    `
     );
     res.json(allMeals);
@@ -76,7 +79,7 @@ router.get('/first-meals', async (req, res) => {
     const firstMeals = await knex.raw(
       `
   SELECT * FROM meals
-  WHERE idmeals=( SELECT MIN(idmeals) FROM  meals)
+  WHERE id=( SELECT MIN(id) FROM  meals)
    `
     );
     if (firstMeals.length === 0) {
@@ -92,7 +95,7 @@ router.get('/last-meals', async (req, res) => {
     const lastMeals = await knex.raw(
       `
   SELECT * FROM meals
-  WHERE idmeals=( SELECT MAX(idmeals) FROM  meals)
+  WHERE id=( SELECT MAX(id) FROM  meals)
    `
     );
     if (lastMeals.length === 0) {
