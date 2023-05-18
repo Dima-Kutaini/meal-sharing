@@ -62,7 +62,7 @@ router.get('/all-meals', async (req, res) => {
     const allMeals = await knex.raw(
       `
   SELECT * FROM meals
-  ORDER BY idmeals
+  ORDER BY id
    `
     );
     res.json(allMeals);
@@ -76,7 +76,7 @@ router.get('/first-meals', async (req, res) => {
     const firstMeals = await knex.raw(
       `
   SELECT * FROM meals
-  WHERE idmeals=( SELECT MIN(idmeals) FROM  meals)
+  WHERE id=( SELECT MIN(id) FROM  meals)
    `
     );
     if (firstMeals.length === 0) {
@@ -92,7 +92,7 @@ router.get('/last-meals', async (req, res) => {
     const lastMeals = await knex.raw(
       `
   SELECT * FROM meals
-  WHERE idmeals=( SELECT MAX(idmeals) FROM  meals)
+  WHERE id=( SELECT MAX(id) FROM  meals)
    `
     );
     if (lastMeals.length === 0) {
