@@ -21,9 +21,9 @@ const MealsList = () => {
   }
 
   return (
-    <div className='meals-list'>
+    <div className="meals-list">
       <h1 className="list-title">Meals List </h1>
-      <ul className='list-container'>
+      <ul className="list-container">
         {meals.map((meal) => (
           <MealsItem
             key={meal.id}
