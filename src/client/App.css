@@ -1,3 +1,42 @@
+/** @format */
+
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.meals-list {
+  text-align: center;
+}
+
+.list-title {
+  font-size: 30px;
+  font-weight: bold;
+  font-family: arial;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.list-container {
+  list-style-type: none;
+  padding: 0;
+}
+
+.list-container li {
+  display: grid;
+  margin-bottom: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1px;
+  border: 1px solid #ccc;
+  padding: px;
+  border-radius: 4px;
+  background-color: rgb(177, 185, 164);
+}
+
+.item-container li h2 {
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+
+.item-container li p {
+  margin: 0;
 }
