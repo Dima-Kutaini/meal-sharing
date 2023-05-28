@@ -9,6 +9,8 @@ const mealsRouter = require('./api/meals');
 const buildPath = path.join(__dirname, '../../dist');
 const port = process.env.PORT || 3000;
 const cors = require('cors');
+const reviewRouter = require('./api/review');
+const reservationRouter = require('./api/reservation');
 
 // For week4 no need to look into this!
 // Serve the built client html
@@ -21,6 +23,8 @@ app.use(express.json());
 
 app.use(cors());
 router.use('/meals', mealsRouter);
+router.use('/review', reviewRouter);
+router.use('/reservation', reservationRouter);
 
 router.get('/', (req, res) => {
   res.send('Hi friend');
