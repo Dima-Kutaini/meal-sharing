@@ -1,41 +1,37 @@
 /** @format */
 
-import React, {useContext} from 'react';
+import React, { useContext } from 'react';
 import { SocialIcon } from 'react-social-icons';
 import MealsList from './MealsList';
-import {Link} from 'react-router-dom'; 
+import { Link } from 'react-router-dom';
 import { MealsContext } from './MealsList';
 
-
-
-
 const HomePage = () => {
-//    const {meals}=useContext(MealsContext);
+  //    const {meals}=useContext(MealsContext);
 
-// const [meals, setMeals]=useState([]); 
+  // const [meals, setMeals]=useState([]);
 
-// useEffect(() => {
-//   // Fetch meals from the database
-//   const fetchMeals = async () => {
-//     try {
-//       const response = await fetch('http://localhost:5001/api/meals');
-//       const data = await response.json();
-//       setMeals(data);
-//     } catch (error) {
-//       console.log(error);
-//     }
-//   };
+  // useEffect(() => {
+  //   // Fetch meals from the database
+  //   const fetchMeals = async () => {
+  //     try {
+  //       const response = await fetch('http://localhost:5001/api/meals');
+  //       const data = await response.json();
+  //       setMeals(data);
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+  //   };
 
-//   fetchMeals();
-// }, []);
+  //   fetchMeals();
+  // }, []);
 
-      
   return (
     <div>
       {/* <div className="logo">
         <img
           className="logo"
-          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSddU1KTCzNYwT2yZTpAMMkPXQRp3Duy1PxMiHaOr67Fonmtm7n9Co52UqBbaRuOnF_ZT8&usqp=CAU"
+          src=" https://images.unsplash.com/photo-1514326640560-7d063ef2aed5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxleHBsb3JlLWZlZWR8NHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1400&q=60"width={1200} height={400}
         />
       </div> */}
       <nav className="nav-container">
@@ -59,24 +55,23 @@ const HomePage = () => {
           </li>
         </ul>
       </nav>
-      {/* <div>
+      <div>
         <h2> Featured meal</h2>
         <Link to="/meals">
-          <button className='more-meals'>See More</button>
+          <button className="more-meals">See More</button>
         </Link>
-        <MealsList limit={3} />
-      </div> */}
-
+      </div>
       <section className="section-container">
         <div className="content-container">
           <h1> Welcome to our food website</h1>
           <p>Discover delicious meals crafted with love.</p>
         </div>
-        {/* <img
+        <img
           className=" home-img"
-          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR64g20QsUO96N-aizxizhfhNca_6Co7HRIUg&usqp=CAU"
-          width={500}
-        /> */}
+          src="https://images.unsplash.com/photo-1560684352-8497838a2229?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxleHBsb3JlLWZlZWR8M3x8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1400&q=60"
+          width={700}
+          height={400}
+        />
       </section>
 
       <footer>

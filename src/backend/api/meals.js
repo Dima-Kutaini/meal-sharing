@@ -30,27 +30,6 @@ mealsRouter.post('/', async (req, res) => {
   }
 });
 
-// mealsRouter.post('/:id', ayn(async (req,res)=>{
-//  const { id, title, description, location, when, max_reservations, price, created_date } = req.body;
-//   try {
-//     const addNewMeal = await knex('meals').insert({
-//       id: id,
-//       title: title,
-//       description: description,
-//       location: location,
-//       'when': when,
-//       max_reservations: max_reservations,
-//       price: price,
-//       created_date: created_date,
-//     });
-
-//     res.status(201).send(addNewMeal);
-//   } catch (error) {
-//     res.status(500).json({ error: 'An error occurred: unable to add a new meal!' });
-//   } 
-
-
-// })); 
 
 //Returns the meal by id:
 mealsRouter.get('/:id', async (req, res) => {
@@ -71,6 +50,60 @@ mealsRouter.get('/:id', async (req, res) => {
     res.status(500).send('Error !');
   }
 });
+
+
+
+
+// mealsRouter.get('/:id/review', async (req, res) => {
+//   const id= parseInt(req.params.id);
+//   try {
+//     const review = await knex
+//       .select('*')
+//       .from('meals')
+//       .leftJoin('review', `meals.id`, 'review.meal_id')
+//       .where('review.meal_id', id);
+//     res.json(review);
+//   } catch (error) {
+//     console.log(error);
+//     res.status(500).send('Error!');
+//   }
+// });
+
+mealsRouter.get('/:id/review', async (req, res) => {
+  try {
+    const mealId = req.params.id;
+
+    const reviews = await knex('review')
+      .select(
+        'review.id',
+        'review.title',
+        'review.description',
+        'review.stars',
+        'review.created_date',
+        'review.meal_id'
+      )
+      .join('meals', 'meals.id', 'review.meal_id')
+      .where('meals.id', mealId);
+
+    res.json(reviews);
+  } catch (error) {
+    console.error(error);
+    res
+      .status(500)
+      .json({ error: 'An error occurred while retrieving the reviews.' });
+  }
+});
+
+
+
+
+
+
+
+
+
+
+
 
 // Updates the meal by id:
 mealsRouter.put('/:id', async (req, res) => {

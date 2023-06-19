@@ -1,65 +1,23 @@
 /** @format */
 
-*{
+ *{
    box-sizing: border-box; 
-} 
-
-body{
-  margin: 0;
-padding: 0;
-   background-color:rgb(255, 255, 253);}
- /* background-image: url(https://thumbs.dreamstime.com/z/various-foods-fresh-herbs-spices-white-background-cover-photo-different-fresh-foods-vegetables-herbs-spices-white-156085466.jpg) ; */ 
-
-
-/* 
-.logo{
-  display: flex;
-align-items: center;
-  width: 200px;
-  margin-bottom: 10px;
-  margin-top: 20px;
-  margin-left: 30%; */
-/* 
-}
-nav{
-  color: black;
-  display: flex;
-  justify-content: space-between;
-  align-items: stretch;
-  gap: 2rem;
-  padding: 0 1rem;
-  padding-top: 2rem;
-  background-color:rgb(111, 147, 190);
-} 
- .site-title{
-    font-size: 25px;
-    font-family:Apple Chancery ;
-    align-items: flex-start;
-} 
- nav ul{
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    display: flex;
-    gap:1rem;
-} 
- nav a{
-   color:inherit; 
-   text-decoration: none;
-   height: 100%;
-   display: flex;
    align-items: center;
-   padding: .25rem;
    
-} 
-nav li:hover{
-    background-color:rgb(163, 188, 219)
-}
- nav li.active{
-    background-color:darkcyan */
-/* }  */
+}  
+  #root {
+
+  height: 100vh;
+ 
+ 
+  }
+ 
 
 /* meals-list */
+.addMealButn{
+  background-color:rgb(129, 129, 126) ;
+  margin-left: 5px;
+}
 .meal-img{
   display: flex;
   flex-grow: 100%;
@@ -85,7 +43,7 @@ nav li:hover{
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 10px;
-  padding: 5px;
+  padding: 15px;
   display: grid;
   justify-content: space-between; 
   
@@ -97,7 +55,7 @@ nav li:hover{
   margin: 10px;
   justify-content:center;
    border-radius: 1px ;
-  background-color: rgb(215, 220, 228);
+  background-color: #cdc3bc ;
   
  
 }  
@@ -107,7 +65,8 @@ nav li:hover{
 
 .item-container{
   display: block;
-  background-color: rgb(187, 201, 209);
+  /* background-color:#d7d6c5 ; */
+  background-color: #d2cbc6 ;
    text-align: center;
   align-items: center;
 }
@@ -136,6 +95,25 @@ nav li:hover{
   margin-top: 25px;
     padding-top: 10px 10px 10px 10px;
     align-items: center;
+}
+.seeMoreButn{
+  background-color: #c07b57;
+  margin-top: 10px;
+  margin-right: 70px;
+  
+}
+@media screen and (max-width: 1400px) {
+  #root {
+    padding-left: 30%;
+    padding-right: 30%;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  #root {
+    padding-left: 0;
+    padding-right: 0;
+  }
 }
 
 /* about */
@@ -214,12 +192,6 @@ background-color: rgb(86, 111, 139);
 
 
 
-
-nav {
-  background-color: #333;
-  color: #fff;
-}
-
 nav ul {
   list-style: none;
   display: flex;
@@ -241,4 +213,5 @@ nav ul li a {
     align-items: flex-start;
     color: #fff;
     margin-top: 10px;
+   
 } 

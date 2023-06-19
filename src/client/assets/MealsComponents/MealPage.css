@@ -9,17 +9,26 @@ body{
 }
 .img-container{
   margin-top: 50px;
+ 
 }
 .meal-page {
   width: 100%;
   font-family: Arial, sans-serif;
-  background-color: #f2f2f2;
+  background-color: #f7f3f3;
   padding: 80px;
   border-radius: 8px;
   box-shadow: 100  100px rgba(0, 0, 0, 0.1);
   text-align: center;
 
 }
+  .nav-container{
+    background-color: #ad8772;
+    width: 800px;
+  display: flex;
+  height: 70px;
+    
+
+  }
 
 h2 {
   font-size: 24px;
@@ -32,14 +41,16 @@ h2 {
   color: #666;
   margin-bottom: 10px;
 }
-
+.more-meals{
+  background-color: #89786f;;
+}
 .price {
   font-size: 18px;
   color: #333;
 }
 
 .button {
-  background-color:#afa7a1;
+  background-color:#b5a192;
   width: 100%;
   color: #fff;
   border: none;

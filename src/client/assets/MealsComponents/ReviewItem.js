@@ -11,7 +11,7 @@ function ReviewItem({ review  }) {
       stars.push(
         <span
           key={i}
-          style={{ color:' rgb(219, 234, 86) '}}>
+          style={{ color: '  #d55714  ' }}>
           &#9733;
         </span>
       );
@@ -24,13 +24,12 @@ function ReviewItem({ review  }) {
 console.log(renderStars); 
   return (
     <div className='review-item'>
-      {/* <ReviewContext.Provider value={ renderStars()}> */}
+     
         <h3 className='review-title'>{review.title}</h3>
         <p className='review-description'>{review.description}</p>
         <p className='review-date'> created in:{review.created_date}</p>
         <div className='review-stars'> {renderStars()}</div>
-        {/* <Stars rating={rating}/> */}
-      {/* </ReviewContext.Provider> */}
+    
     </div>
   );
 }

@@ -9,9 +9,7 @@ const About = () => {
       <p className='about-container'>
         Welcome to our restaurant! We take pride in serving delicious meals made
         from the freshest ingredients. Our chefs are passionate about creating
-        unforgettable dining experiences for our customers. From mouthwatering
-        appetizers to delectable main courses and irresistible desserts, we
-        strive to exceed your expectations with every bite. Join us for a
+        unforgettable dining experiences for our customers.  Join us for a
         culinary journey that will tantalize your taste buds and leave you
         wanting more. We look forward to serving you!
       </p>

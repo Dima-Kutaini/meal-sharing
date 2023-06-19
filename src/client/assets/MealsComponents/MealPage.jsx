@@ -3,8 +3,10 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import MealsItem from './MealsItem';
-
+import { Link } from 'react-router-dom'; 
 import './MealPage.css'; 
+
+
 const MealPage = () => {
   const { id } = useParams();
 
@@ -38,6 +40,7 @@ const MealPage = () => {
         <img
           src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ34x9BCyDAV5INCm5xnC43wmlMl2h3nSSTmQ&usqp=CAU"
           alt="Meal Image"
+          width={450}
           className="meal-image"
         />
       </div>
@@ -51,8 +54,12 @@ const MealPage = () => {
           <p> Available:{meal.available}</p>
           <p> date: {meal.created_date}</p>
           <div className="button">
-            <button className="but1">add review</button>
-            <button className="but2"> add reservation</button>
+            <Link to={`/meals/${id}/review`}>
+              <button className="but1">add review</button>
+            </Link>
+            <Link to='/Reservations'>
+              <button className="but2"> add reservation</button>
+            </Link>
           </div>
         </div>
       )}

@@ -3,14 +3,20 @@
 import React, { useEffect, useState } from 'react';
 import ReservationItem from './ReservationItem';
 
+
+
+
+
+
 const ReservationList = () => {
   const [reservations, setReservations] = useState([]);
-  const [nerReservation, setNewReservation] = useState({
-    contact_ame: '',
+  const [newReservation, setNewReservation] = useState({
+
     title: '',
-    number_og_guests: 0,
+    number_of_guests: '',
+    created_date: '',
     contact_phonenumber: '',
-    created_date: ''
+    contact_name:'',
   });
   useEffect(() => {
     fetchReservations();
@@ -44,19 +50,28 @@ const handleFormSubmit = (e) => {
       setReservations([...reservations, data]);
       // Reset the new reservation form
       setNewReservation({
-        contact_ame: '',
+        contact_name: '',
         title: '',
-        number_og_guests: 0,
+        number_of_guests: '',
+        created_date: '',
         contact_phonenumber: '',
-        created_date: ''
+        contact_name: '',
       });
     })
     .catch((error) => console.log(error));
 };
+
+const handleInputChange = (e) => {
+  const { name, value } = e.target;
+  setNewReservation((prevState) => ({
+    ...prevState,
+    [name]: value,
+  }));
+};
   
 return (
   <div className="reservation-container">
-    <ul>
+    <ul className="reservation-card">
       {reservations.map((reservation) => (
         <ReservationItem
           key={reservation.id}
@@ -64,67 +79,75 @@ return (
         />
       ))}
     </ul>
-    {/* <form onSubmit={handleFormSubmit}>
+    <form
+      onSubmit={handleFormSubmit}
+      className="reservation-form">
       <h3>Add a New Reservation</h3>
-    </form>
-    <div>
-      <label htmlFor="name">Name:</label>
-      <input
-        type="text"
-        id="name"
-        name="contact_name"
-        value={newReservation.contact_name}
-        onChange={handleInputChange}
-        required
-      />
-    </div>
-    <div>
-      <label htmlFor="date">Date:</label>
-      <input
-        type="text"
-        id="date"
-        name="created_date"
-        value={newReservation.created_date}
-        onChange={handleInputChange}
-        required
-      />
-    </div>
-    <div>
-      <label htmlFor="numberOfGuests">Number of Guests:</label>
-      <input
-        type="number"
-        id="numberOfGuests"
-        name="numberOfGuests"
-        min="1"
-        value={newReservation.numberOfGuests}
-        onChange={handleInputChange}
-        required
-      />
-    </div>
-    <div>
-      <label htmlFor="phone">Phone:</label>
-      <input
-        type="tel"
-        id="phone"
-        name="phone"
-        value={newReservation.phone}
-        onChange={handleInputChange}
-        required
-      />
-    </div>
 
-    <div>
-      <label htmlFor="email">Email:</label>
-      <input
-        type="email"
-        id="email"
-        name="email"
-        value={newReservation.email}
-        onChange={handleInputChange}
-        required
-      />
-    </div>
-  </div> */}
+      <div className="form-row">
+        <label htmlFor="title">Title:</label>
+        <input
+          type="text"
+          id="title"
+          name="title"
+          value={newReservation.title}
+          onChange={handleInputChange}
+          required
+        />
+      </div>
+
+      <div className="form-row">
+        <label htmlFor="number_of_guests">Number of Guests:</label>
+        <input
+          type="text"
+          id="number_og_guests"
+          name="umber_of_guests"
+          min="1"
+          value={newReservation.number_of_guests}
+          onChange={handleInputChange}
+          required
+        />
+      </div>
+      <div className="form-row">
+        <label htmlFor="createdDate">Date:</label>
+        <input
+          type="text"
+          id="createdDate"
+          name="created_date"
+          value={newReservation.created_date}
+          onChange={handleInputChange}
+          required
+        />
+      </div>
+      <div className="form-row">
+        <label htmlFor="contactPhoneNumber">Phone:</label>
+        <input
+          type="tel"
+          id="contactPhoneNumber"
+          name="contact_phonenumber"
+          value={newReservation.contact_phonenumber}
+          onChange={handleInputChange}
+          required
+        />
+      </div>
+      <div className="form-row">
+        <label htmlFor="contactName">Name:</label>
+        <input
+          type="text"
+          id="contactName"
+          name="contact_name"
+          value={newReservation.contact_name}
+          onChange={handleInputChange}
+          required
+        />
+      </div>
+      <button
+        type="submit"
+        onSubmit={handleFormSubmit}>
+        {' '}
+        Submit
+      </button>
+    </form>
   </div>
 );
       }

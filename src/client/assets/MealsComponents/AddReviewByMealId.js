@@ -1,12 +1,11 @@
 /** @format */
 
 import React, { useEffect, useState } from 'react';
-import ReviewItem from './ReviewItem';
 import { useParams } from 'react-router-dom';
+import ReviewItem from './ReviewItem';
 
-
-const ReviewList = () => {
-   const { id } = useParams();
+const AddReviewByMealId = () => {
+  const { id } = useParams();
   const [reviews, setReviews] = useState([]);
   const [newReview, setNewReview] = useState({
     title: '',
@@ -14,55 +13,73 @@ const ReviewList = () => {
     created_date: '',
     stars: 0,
   });
- 
+
   useEffect(() => {
-    // Fetch reviews from the API
-    fetch(`http://localhost:5001/api/review`)
-      .then((response) => response.json())
-      .then((data) => setReviews(data))
-      .catch((error) => console.log(error));
-  }, []);
+    const fetchReviews = async () => {
+      try {
+        const response = await fetch(
+          `http://localhost:5001/api/meals/${id}/review`
+        );
+        const data = await response.json();
+        setReviews(data);
+      } catch (error) {
+        //console.log(error);
+      }
+    };
+
+    fetchReviews();
+  }, [id]);
 
   const handleInputChange = (e) => {
-    setNewReview({ ...newReview, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    setNewReview((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
   };
 
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
-    // Send the new review data to the server
-    fetch(`http://localhost:5001/api/review`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(newReview),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        // Update the reviews list with the new review
-        setReviews([...reviews, data]);
-        // Reset the new review form
-        setNewReview({
-          title: '',
-          description: '',
-          created_date: '',
-          stars: 0,
-        });
-      })
-      .catch((error) => console.log(error));
-  };
 
+    try {
+      const response = await fetch(
+        `http://localhost:5001/api/meals/${id}/review`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(newReview),
+        }
+      );
+
+      const data = await response.json();
+      setReviews((prevReviews) => [...prevReviews, data]);
+      setNewReview({
+        title: '',
+        description: '',
+        created_date: '',
+        stars: 0,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const filteredReviews = reviews.filter((review) => review.meal_id === id);
   return (
-    <div className="">
+    <div>
       <h2>Share your experience</h2>
-      <div className="review-list">
-        {reviews.map((review) => (
+      <div className="review-list"></div>
+      {filteredReviews.length > 0 ? (
+        filteredReviews.map((review) => (
           <ReviewItem
             key={review.id}
             review={review}
           />
-        ))}
-      </div>
+        ))
+      ) : (
+        <p>No reviews found for this meal.</p>
+      )}
       <div>
         <form onSubmit={handleFormSubmit}>
           <h3>Add a New Review</h3>
@@ -86,6 +103,7 @@ const ReviewList = () => {
               onChange={handleInputChange}
               required></textarea>
           </div>
+
           <div>
             <label htmlFor="stars">Stars:</label>
             <input
@@ -117,5 +135,4 @@ const ReviewList = () => {
   );
 };
 
-export default ReviewList;
-
+export default AddReviewByMealId;
