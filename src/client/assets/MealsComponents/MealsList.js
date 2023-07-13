@@ -10,14 +10,14 @@ const MealsList = ({ limit }) => {
   const [meals, setMeals] = useState([]);
   const [error, setError] = useState(null);
   const [showAddForm, setShowAddForm] = useState(false);
-  const [newMeal, setNewMeal] = useState({
-
-    imageUrls: '',
-    title: '',
-    description: '',
-    price: 0,
-  });
   const [searchQuery, setSearchQuery] = useState('');
+    const [sortDirection, setSortDirection] = useState('asc');
+    const [newMeal, setNewMeal] = useState({
+      imageUrls: '',
+      title: '',
+      description: '',
+      price: 0,
+    });
 
   useEffect(() => {
     fetchMeals();
@@ -26,6 +26,19 @@ const MealsList = ({ limit }) => {
   async function fetchMeals() {
     try {
       const response = await fetch('http://localhost:5001/api/meals');
+      // let url = 'http://localhost:5001/api/meals';
+
+      // // Add sort option and sort direction to the URL
+      // if (sortOption === 'highToLow') {
+      //   url += '?sort=highToLow';
+      // } else if (sortOption === 'lowToHigh') {
+      //   url += '?sort=lowToHigh';
+      // }
+
+      // // Append sort direction to the URL
+      // url += `&sortDir=${sortDir}`;
+
+      // const response = await fetch(url);
 
       if (!response.ok) {
         throw new Error('Failed to fetch meals');
@@ -47,16 +60,22 @@ const MealsList = ({ limit }) => {
     const titleMatch = meal.title
       .toLowerCase()
       .includes(searchQuery.toLowerCase());
-    const priceMatch = meal.price <= parseFloat(searchQuery);
-    return titleMatch || priceMatch;
+   
+    return titleMatch;
   });
+  
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
+    if (name === 'sortDirection') {
+      setSortDirection(value);
+    }
+    else{
     setNewMeal((prevMeal) => ({
       ...prevMeal,
       [name]: value,
     }));
+  }
   };
 
   const handleToggleAddForm = () => {
@@ -82,55 +101,27 @@ const MealsList = ({ limit }) => {
 
   return (
     <div>
-      <div className='search-container'>
-      <label>Search for meal </label>
-      <input
-        className="search-input"
-        type="text"
-        placeholder="Search for a meal"
-        value={searchQuery}
-        onChange={(e) => setSearchQuery(e.target.value)}
-      />
-</div>
-      <div>
-        {showAddForm ? (
-          <div className="add-meal-form">
-            <h2>Add New Meal</h2>
-            <input
-              type="text"
-              placeholder="Image URL"
-              name="imageUrl"
-              value={newMeal.imageUrls}
-              onChange={handleInputChange}
-            />
-            <input
-              type="text"
-              placeholder="Title"
-              name="title"
-              value={newMeal.title}
-              onChange={handleInputChange}
-            />
-            <input
-              type="text"
-              placeholder="Description"
-              name="description"
-              value={newMeal.description}
-              onChange={handleInputChange}
-            />
-            <input
-              type="number"
-              placeholder="Price"
-              name="price"
-              value={newMeal.price}
-              onChange={handleInputChange}
-            />
-            <button onClick={handleAddMeal}>Add Meal</button>
-            <button onClick={handleToggleAddForm}>Cancel</button>
-          </div>
-        ) : (
-          <button className='addMealButn' onClick={handleToggleAddForm}>Add Meal</button>
-        )}
+      <div className="search-container">
+        <label>Search for meal </label>
+        <input
+          className="search-input"
+          type="text"
+          placeholder="Search for a meal"
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+        />
       </div>
+      {/* <div className="sort-container">
+        <label htmlFor="sortDirection">Sort Direction:</label>
+        <select
+          id="sortDirection"
+          name="sortDirection"
+          value={sortDir}
+          onChange={handleInputChange}>
+          <option value="asc">Ascending</option>
+          <option value="desc">Descending</option>
+        </select>
+      </div> */}
 
       <div className="meals-container">
         <h1 className="list-title">Meals List</h1>

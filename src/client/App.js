@@ -12,6 +12,8 @@ import ReservationList from "./assets/MealsComponents/ReservationList";
 import MealPage from "./assets/MealsComponents/MealPage";
 import AddReviewByMealId  from "./assets/MealsComponents/AddReviewByMealId"; 
 import'./index.css'; 
+import './assets/MealsComponents/HomePage.css';
+import AddReservationByMealId from './assets/MealsComponents/AddReservationByMealId';
 
 
 
@@ -52,8 +54,13 @@ function App() {
 
         <Route
           exact
-          path="/meals/:meal_id/review">
+          path="/meals/:id/review">
           <AddReviewByMealId />
+        </Route>
+        <Route
+          exact
+          path="/meals/:id/Reservation">
+          <AddReservationByMealId />
         </Route>
 
         <Route

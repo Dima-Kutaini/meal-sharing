@@ -57,7 +57,7 @@ const MealPage = () => {
             <Link to={`/meals/${id}/review`}>
               <button className="but1">add review</button>
             </Link>
-            <Link to='/Reservations'>
+            <Link to={`/meals/${id}/Reservation`}>
               <button className="but2"> add reservation</button>
             </Link>
           </div>

@@ -53,44 +53,54 @@ reviewRouter.get('/:meal_id/review', async (req, res) => {
 // });
 
 reviewRouter.post('/:id', async (req, res) => {
-  const { id, title, description, stars, created_date, meal_id } = req.body;
+  const {  title, description, stars, created_date, meal_id } = req.body;
   try {
     const addNewReview = await knex('review').insert({
-      id: id,
+      // id: id,
       title: title,
       description: description,
       stars: stars,
       created_date: created_date,
-      meal_id: meal_id,
+      meal_id: req.params.id,
     });
 
-    res.status(201).send(addNewReview);
+    // res.status(201).send(addNewReview);
+     res
+       .status(201)
+       .send({
+         title: title,
+         description: description,
+         stars: stars,
+         created_date: created_date,
+         meal_id: req.params.id,
+       });
   } catch (error) {
+   
     res
       .status(500)
       .json({ error: 'An error is  occurred: unable to add a new review!' });
   }
 });
 // i tried and inserted this review by postman and it worked :)
-reviewRouter.post('/:id', async (req, res) => {
-  const { id, title, description, stars, created_date, meal_id } = req.body;
-  try {
-    const addNewReview = await knex('review').insert({
-      id: 5,
-      title: 'Tasty Food',
-      description: "One of the most delicious dishes I've ever tasted!",
-      stars: 5,
-      created_date: '2023-05-20 12:17:08',
-      meal_id: 8,
-    });
+// reviewRouter.post('/:id', async (req, res) => {
+//   const { id, title, description, stars, created_date, meal_id } = req.body;
+//   try {
+//     const addNewReview = await knex('review').insert({
+//       id: 5,
+//       title: 'Tasty Food',
+//       description: "One of the most delicious dishes I've ever tasted!",
+//       stars: 5,
+//       created_date: '2023-05-20 12:17:08',
+//       meal_id: 8,
+//     });
 
-    res.status(201).send(addNewReview);
-  } catch (error) {
-    res
-      .status(500)
-      .json({ error: 'An error occurred: unable to add a new review!' });
-  }
-});
+//     res.status(201).send(addNewReview);
+//   } catch (error) {
+//     res
+//       .status(500)
+//       .json({ error: 'An error occurred: unable to add a new review!' });
+//   }
+// });
 // GET a review by ID
 reviewRouter.get('/:id', async (req, res) => {
   const id = parseInt(req.params.id);

@@ -94,14 +94,31 @@ mealsRouter.get('/:id/review', async (req, res) => {
   }
 });
 
+mealsRouter.get('/:id/Reservation', async (req, res) => {
+  try {
+    const mealId = req.params.id;
 
+    const mealReservation = await knex('Reservation')
+      .select(
+        'Reservation.id',
+        'Reservation.title',
+        'Reservation.number_of_guests',
+        'Reservation.created_date',
+        'Reservation.contact_phonenumber',
+        'Reservation.contact_name', 
+        'Reservation.meal_id'
+      )
+      .join('meals', 'meals.id', 'Reservation.meal_id')
+      .where('meals.id', mealId);
 
-
-
-
-
-
-
+    res.json(mealReservation);
+  } catch (error) {
+    console.error(error);
+    res
+      .status(500)
+      .json({ error: 'An error occurred while retrieving the reservation.' });
+  }
+});
 
 
 

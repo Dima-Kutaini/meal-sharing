@@ -1,32 +1,29 @@
-/** @format */
-
- *{
-   box-sizing: border-box; 
-   align-items: center;
-   
-}  
   #root {
-
-  height: 100vh;
- 
- 
+    margin: 0;
   }
  
-
+.search-container{
+  margin-top: 30px;
+margin-left: 200px;
+}
 /* meals-list */
 .addMealButn{
-  background-color:rgb(129, 129, 126) ;
+  background-color:rgb(175, 205, 172) ;
   margin-left: 5px;
+  height: 35px;
+  font-size: 18px;
+  border: none;
 }
 .meal-img{
   display: flex;
   flex-grow: 100%;
   width:200px; 
-  height: 125px; ;
+  height: 125px; 
   
 }
 .meals-list {
   width: 100%;
+
 }
 
 .list-title {
@@ -39,38 +36,35 @@
 }
 
 .list-container {
-  width: 20%;
+ width: 80%;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
-  padding: 15px;
-  display: grid;
-  justify-content: space-between; 
-  
-
-  
+  gap: 15px; 
+ grid-auto-rows: minmax(100px, auto);
+    list-style-type:none; 
 }
 
 .list-container li { 
   margin: 10px;
   justify-content:center;
    border-radius: 1px ;
-  background-color: #cdc3bc ;
+  background-color:rgb(201, 222, 200) ;
+
   
  
 }  
 .list-container img{
-  margin-left: 5px;
+  width: 100%;
+height: 5%;
 }
 
 .item-container{
   display: block;
-  /* background-color:#d7d6c5 ; */
-  background-color: #d2cbc6 ;
+   background-color:rgb(169, 217, 169) ; 
    text-align: center;
   align-items: center;
-}
-.item-container li h2 {
+ }  
+ .item-container li h2 {
   font-size: 18px;
   font-weight: bold bold;
 
@@ -80,27 +74,13 @@
   margin-bottom: 10px;
   padding: 5px 0;
 
-}
-.footer {
-  position:fixed;
-  bottom: 0;
-  margin-top: 10px;
+} 
+button{
+  background-color:rgb(175, 190, 180);
+  height: 35px;
+  font-size: 18px;
   margin-bottom: 10px;
-  width: 100%;
-  color: rgb(71, 68, 68);
-  text-align: center;
-
-}
-.socialIcon{
-  margin-top: 25px;
-    padding-top: 10px 10px 10px 10px;
-    align-items: center;
-}
-.seeMoreButn{
-  background-color: #c07b57;
-  margin-top: 10px;
-  margin-right: 70px;
-  
+  border: none;
 }
 @media screen and (max-width: 1400px) {
   #root {
@@ -115,103 +95,3 @@
     padding-right: 0;
   }
 }
-
-/* about */
-/* ------------------------------- */
-.about{
-  background-color: rgb(248, 249, 249);
-  padding-top: 10px;
-  justify-items: center;
-  padding-left: 10px;
-}
-
-.about-title{
-  font-size: 24px;
-  margin-bottom: 20px;
-  text-decoration: underline;
-  font-family: times new roman;
-}
-
-.about-container {
-  margin-bottom: 24px;
-  padding: 2px;
-  margin-bottom: 30px;
-}
-
-.image-container {
-  margin-bottom: 24px;
-  width: 100%;
- 
-}
-
-.img {
-  max-width: 100%;
-  height: 50px;
- 
-}
- .meal-img{
-  align-items: center;
-   margin-left: 100px;
-} 
-
-.section-container {
-  margin-bottom: 16px;
-  margin-bottom: 40px;
-}
-
-.section-title {
-  font-size: 20px;
-  margin-bottom: 8px;
-}
-
-.more-meals{
-  margin-bottom: 10px;
-background-color: rgb(86, 111, 139);
-}
-
-.butn{
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 15px;
-  align-items: stretch;
-  padding: 10px;
-
-}
-.search-container{
-  margin-left: 150px;
-  margin-top: 50px;
-  width: 350px;
-  height: 40px;
-
-}
-.search-input{
-  width: 210px;
-  height: 40px;
-  border-radius: 4px;
-}
-
-
-
-nav ul {
-  list-style: none;
-  display: flex;
-  justify-content: space-around;
-  padding: 10px;
-}
-
-nav ul li {
-  margin: 0 10px;
-}
-
-nav ul li a {
-  color: #fff;
-  text-decoration: none;
-}
-  .site-title{
-    font-size: 25px;
-    font-family:Apple Chancery ;
-    align-items: flex-start;
-    color: #fff;
-    margin-top: 10px;
-   
-} 

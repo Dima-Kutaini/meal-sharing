@@ -23,7 +23,7 @@ const AddReviewByMealId = () => {
         const data = await response.json();
         setReviews(data);
       } catch (error) {
-        //console.log(error);
+        console.log(error);
       }
     };
 
@@ -39,11 +39,12 @@ const AddReviewByMealId = () => {
   };
 
   const handleFormSubmit = async (e) => {
-    e.preventDefault();
+    // const { id } = useParams();
+     e.preventDefault();
 
     try {
       const response = await fetch(
-        `http://localhost:5001/api/meals/${id}/review`,
+        `http://localhost:5001/api/review/${id}`,
         {
           method: 'POST',
           headers: {
@@ -65,71 +66,78 @@ const AddReviewByMealId = () => {
       console.log(error);
     }
   };
-  const filteredReviews = reviews.filter((review) => review.meal_id === id);
+  // const filteredReviews = reviews.filter((review) => review.meal_id === id);
   return (
     <div>
       <h2>Share your experience</h2>
-      <div className="review-list"></div>
-      {filteredReviews.length > 0 ? (
-        filteredReviews.map((review) => (
-          <ReviewItem
-            key={review.id}
-            review={review}
-          />
-        ))
-      ) : (
-        <p>No reviews found for this meal.</p>
-      )}
+      <div className="review-list_item">
+        {reviews.length > 0 ? (
+          reviews.map((review) => (
+            <ReviewItem
+              key={review.id}
+              review={review}
+            />
+          ))
+        ) : (
+          <p>No reviews found for this meal.</p>
+        )}
+      </div>
       <div>
-        <form onSubmit={handleFormSubmit}>
-          <h3>Add a New Review</h3>
-          <div>
-            <label htmlFor="title">Title:</label>
-            <input
-              type="text"
-              id="title"
-              name="title"
-              value={newReview.title}
-              onChange={handleInputChange}
-              required
-            />
-          </div>
-          <div className="add-review">
-            <label htmlFor="description">Description:</label>
-            <textarea
-              id="description"
-              name="description"
-              value={newReview.description}
-              onChange={handleInputChange}
-              required></textarea>
-          </div>
+        <div className="add_form">
+          <form onSubmit={handleFormSubmit}>
+            <h3>Add a New Review</h3>
+            <div>
+              <label htmlFor="title">Title:</label>
+              <input
+                type="text"
+                id="title"
+                name="title"
+                value={newReview.title}
+                onChange={handleInputChange}
+                required
+              />
+            </div>
+            <div>
+              <label htmlFor="description">Description:</label>
+              <textarea
+                id="description"
+                name="description"
+                value={newReview.description}
+                onChange={handleInputChange}
+                required></textarea>
+            </div>
 
-          <div>
-            <label htmlFor="stars">Stars:</label>
-            <input
-              type="number"
-              id="stars"
-              name="stars"
-              min="0"
-              max="5"
-              value={newReview.stars}
-              onChange={handleInputChange}
-              required
-            />
-          </div>
-          <div>
-            <label htmlFor="created_date">Date:</label>
-            <input
-              type="text"
-              id="created_date"
-              name="created_date"
-              value={newReview.created_date}
-              onChange={handleInputChange}
-              required
-            />
-          </div>
-          <button type="submit">Submit</button>
-        </form>
+            <div>
+              <label htmlFor="created_date">Date:</label>
+              <input
+                type="text"
+                id="created_date"
+                name="created_date"
+                value={newReview.created_date}
+                onChange={handleInputChange}
+                required
+              />
+            </div>
+            <div>
+              <label htmlFor="stars">Stars:</label>
+              <input
+                type="number"
+                id="stars"
+                name="stars"
+                min="0"
+                max="5"
+                value={newReview.stars}
+                onChange={handleInputChange}
+                required
+              />
+            </div>
+            <button
+              className="submit"
+              type="submit">
+              Submit
+            </button>
+          </form>
+        </div>
       </div>
     </div>
   );

@@ -23,7 +23,7 @@ body{
 }
   .nav-container{
     background-color: #ad8772;
-    width: 800px;
+    width: 30%px;
   display: flex;
   height: 70px;
     
@@ -51,28 +51,32 @@ h2 {
 
 .button {
   background-color:#b5a192;
-  width: 100%;
-  color: #fff;
+  width: 60%;
   border: none;
   padding: 10px 20px;
-  font-size: 16px;
   border-radius: 4px;
-  cursor: pointer;
   margin-top: 30px;
+margin-left: 200px;
 }
 
-.button:hover {
+.but1:hover {
   background-color:#836f60;
 }
 
-.button:focus {
-  outline: none;
-}
 .but1{
   background-color: #d55714;
   margin-right: 50px;
+   height: 40px;
+  font-size: 20px;
+   cursor: pointer;
 }
 .but2{
   background-color: #d55714;
   margin-left: 50px;
+  height: 40px;
+  font-size: 20px;
+   cursor: pointer;
+}
+.but2:hover {
+  background-color:#836f60;
 }

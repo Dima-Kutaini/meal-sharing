@@ -3,11 +3,6 @@
 import React, { useEffect, useState } from 'react';
 import ReservationItem from './ReservationItem';
 
-
-
-
-
-
 const ReservationList = () => {
   const [reservations, setReservations] = useState([]);
   const [newReservation, setNewReservation] = useState({
@@ -71,7 +66,7 @@ const handleInputChange = (e) => {
   
 return (
   <div className="reservation-container">
-    <ul className="reservation-card">
+    <ul className="reservation-cards">
       {reservations.map((reservation) => (
         <ReservationItem
           key={reservation.id}

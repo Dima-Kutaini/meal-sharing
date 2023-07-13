@@ -17,7 +17,7 @@ function MealsItem({ meal, selectedMealId, setSelectedMealId }) {
         <Link to={`/meals/${meal.id}`}>
           <img
             className="meal-img"
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQL7wo1Xz0tb5M-b9keMhsfsAj_D21HrUcC1Q&usqp=CAU"
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRb9gI8KOLYzDjFc51rYbeq9gkit9sDO_kKtQ&usqp=CAU"
             alt="img"
             width="100"
             height="100"
@@ -26,14 +26,13 @@ function MealsItem({ meal, selectedMealId, setSelectedMealId }) {
         {/* <Stars rating={rating} /> */}
 
         <div className="meal-info">
-    
-            <h3>{meal.title}</h3>
-            <p>{meal.description}</p>
-            <p> Price: {meal.price} kr </p>
-        
-        <Link to={`/meals/${meal.id}`}>
-            <button className='seeMoreButn'> See More</button>
-   </Link>
+          <h3>{meal.title}</h3>
+          <p>{meal.description}</p>
+          <p> Price: {meal.price} kr </p>
+
+          <Link to={`/meals/${meal.id}`}>
+            <button className="seeMoreButn"> See More</button>
+          </Link>
         </div>
       </li>
     </div>
