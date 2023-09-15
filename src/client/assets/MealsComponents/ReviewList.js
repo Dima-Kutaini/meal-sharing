@@ -16,22 +16,7 @@ const ReviewList = () => {
       .catch((error) => console.log(error));
   }, []);
 
-  // const handleFormSubmit = (e) => {
-  //   e.preventDefault();
-  //   // Send the new review data to the server
-  //   fetch(`http://localhost:5001/api/review`, {
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //     },
-  //     body: JSON.stringify(newReview),
-  //   })
-  //     .then((response) => response.json())
-  //     .then((data) => {
-  //       setReviews([...reviews, data]);
-  //     })
-  //     .catch((error) => console.log(error));
-  // };
+  // 
 
   return (
     <div>
