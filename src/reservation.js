@@ -22,7 +22,7 @@ reservationRouter.get('/',async(req,res)=>{
 
     }catch (error) {
     console.log(error);
-    res.status(500).send('Error occurrede!');
+    res.status(500).send('Error occurred!');
   }
 });
 

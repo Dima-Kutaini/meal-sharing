@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 
 
 /** @format */
@@ -25,8 +25,8 @@ mealsRouter.post('/', async (req, res) => {
   try {
     const addMeal = await knex('meals').insert(newMeal);
     res.status(201).send(addMeal);
-=======
-/** @format */
+
+
 
 const express = require('express');
 const router = express.Router();
@@ -38,13 +38,13 @@ router.get('/', async (request, response) => {
     // knex syntax for selecting things. Look up the documentation for knex for further info
     const titles = await knex('meals').select('title');
     response.json(titles);
->>>>>>> 08232920165e5b8d2c1696caaeab4920d86a5197
+
   } catch (error) {
     console.log(error);
     res.status(500).json({ message: 'error!' });
   }
 });
-<<<<<<< HEAD
+
 
 
 //Returns the meal by id:
@@ -56,7 +56,7 @@ mealsRouter.get('/:id', async (req, res) => {
       .from('meals')
       .where({ id })
       .first();
-=======
+
 module.exports = router;
 
 //Returns all meals
@@ -86,7 +86,7 @@ mealsRouter.get('/:idmeals', async (req, res) => {
   const idmeals = parseInt(req.params.idmeals);
   try {
     const mealId = await knex.select().from('meals').where({ idmeals: idmeals }).first();
->>>>>>> 08232920165e5b8d2c1696caaeab4920d86a5197
+
     if (mealId.length === 0) {
       res.status(404).send('meal not found!');
     } else {
@@ -94,7 +94,7 @@ mealsRouter.get('/:idmeals', async (req, res) => {
     }
   } catch (error) {
     console.log(error);
-<<<<<<< HEAD
+
     res.status(500).send('Error !');
   }
 });
@@ -176,7 +176,7 @@ mealsRouter.put('/:id', async (req, res) => {
   const updatedMeal = req.body;
   try {
     const updated = await knex('meals').where({ id: id }).update(updatedMeal);
-=======
+
     res.status(500).send('Error occurred!');
   }
 }); 
@@ -187,7 +187,7 @@ mealsRouter.put('/:idmeals', async (req, res) => {
   const updatedMeal = req.body;
   try {
     const updated = await knex('meals').where({ idmeals: idmeals }).update(updatedMeal);
->>>>>>> 08232920165e5b8d2c1696caaeab4920d86a5197
+
     if (updated.length === 0) {
       res.status(404).send('meal not updated');
     } else {
@@ -200,17 +200,17 @@ mealsRouter.put('/:idmeals', async (req, res) => {
 });
 
 //Deletes the meal by id
-<<<<<<< HEAD
+
 mealsRouter.delete('/:id', async (req, res) => {
   const id = parseInt(req.params.id);
   try {
     const deletedMeal = await knex('meals').where({ id: id }).del();
-=======
+
 mealsRouter.delete('/:idmeals', async (req, res) => {
   const idmeals = parseInt(req.params.idmeals);
   try {
     const deletedMeal = await knex('meals').where({ idmeals: idmeals}).del();
->>>>>>> 08232920165e5b8d2c1696caaeab4920d86a5197
+
     if (deletedMeal.length === 0) {
       res.status(404).send('meal not deleted');
     } else {
@@ -222,7 +222,7 @@ mealsRouter.delete('/:idmeals', async (req, res) => {
   }
 });
 
-<<<<<<< HEAD
+
 //---------------------------------------
 //NOdeJs-week3 Homework
 //-----------------------------------------
@@ -305,6 +305,5 @@ mealsRouter.get('/', async (req, res) => {
 module.exports = mealsRouter;
 
 
-=======
+
 module.exports = mealsRouter;
->>>>>>> 08232920165e5b8d2c1696caaeab4920d86a5197
