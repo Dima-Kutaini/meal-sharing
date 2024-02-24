@@ -53,7 +53,7 @@ reviewRouter.get('/:meal_id/review', async (req, res) => {
 // });
 
 reviewRouter.post('/:id', async (req, res) => {
-  const {  title, description, stars, created_date, meal_id } = req.body;
+  const { title, description, stars, created_date, meal_id } = req.body;
   try {
     const addNewReview = await knex('review').insert({
       // id: id,
@@ -65,17 +65,14 @@ reviewRouter.post('/:id', async (req, res) => {
     });
 
     // res.status(201).send(addNewReview);
-     res
-       .status(201)
-       .send({
-         title: title,
-         description: description,
-         stars: stars,
-         created_date: created_date,
-         meal_id: req.params.id,
-       });
+    res.status(201).send({
+      title: title,
+      description: description,
+      stars: stars,
+      created_date: created_date,
+      meal_id: req.params.id,
+    });
   } catch (error) {
-   
     res
       .status(500)
       .json({ error: 'An error is  occurred: unable to add a new review!' });

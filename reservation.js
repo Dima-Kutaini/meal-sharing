@@ -22,7 +22,7 @@ reservationRouter.get('/',async(req,res)=>{
 
     }catch (error) {
     console.log(error);
-    res.status(500).send('Error occurrede!');
+    res.status(500).send('Error occurred!');
   }
 });
 
@@ -41,13 +41,14 @@ reservationRouter.post('/', async(req,res)=>{
 reservationRouter.get('/:id', async(req,res)=>{
     const id= parseInt(req.params.id)
     try{
-        const reservation= await knex.select().from('Reeservation').where({id:id}).first();
+        const reservation= await knex.select().from('Reservation').where({id:id}).first();
         if (reservation.length === 0) {
       res.status(404).send('Reservation not found!');
     } else {
       res.json(reservation);
     }
   } catch (error) {
+    
     console.log(error);
     res.status(500).send('Error occurred!');
   }
