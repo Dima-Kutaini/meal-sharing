@@ -3,12 +3,16 @@
 const express = require('express');
 const app = express();
 const router = express.Router();
+const reservationRouter=express.Router();
 const path = require('path');
 const knex = require('./database');
 const mealsRouter = require('./api/meals');
+const  reservationsRouter=require('./api/reservation'); 
 const buildPath = path.join(__dirname, '../../dist');
 const port = process.env.PORT || 3000;
 const cors = require('cors');
+const reviewRouter = require('./api/review');
+const reservationRouter = require('./api/reservation');
 
 // For week4 no need to look into this!
 // Serve the built client html
@@ -21,9 +25,11 @@ app.use(express.json());
 
 app.use(cors());
 router.use('/meals', mealsRouter);
+router.use('/review', reviewRouter);
+router.use('/reservation', reservationRouter);
 
-router.get('/meals', (req, res) => {
-  res.send('Hi friends');
+router.get('/', (req, res) => {
+  res.send('Hi friend');
 });
 //Respond with all meals in the future
 //(relative to the when datetime):
@@ -80,7 +86,7 @@ router.get('/first-meals', async (req, res) => {
    `
     );
     if (firstMeals.length === 0) {
-      res.status(400).json({ error: 'There are no meals' });
+      res.status(404).json({ error: 'There are no meals' });
     }
     res.json(firstMeals);
   } catch (error) {
@@ -96,8 +102,8 @@ router.get('/last-meals', async (req, res) => {
    `
     );
     if (lastMeals.length === 0) {
-      res.status(400).json({ error: 'There are no meals' });
-mea    }
+      res.status(404).json({ error: 'There are no meals' });
+    }
     res.json(lastMeals);
   } catch (error) {
     throw error;
