@@ -1,3 +1,5 @@
+/** @format */
+
 require('dotenv').config();
 const path = require('path');
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
@@ -29,7 +31,7 @@ module.exports = {
         test: /\.(png|woff|woff2|eot|ttf|svg)$/,
         use: {
           loader: 'url-loader',
-          options: { limit: 100000 }
+          options: { limit: 100000 },
         },
       },
     ],
@@ -38,7 +40,7 @@ module.exports = {
     extensions: ['*', '.js', '.jsx'],
   },
   devServer: {
-    static: '/',
+    static: './',
     historyApiFallback: true,
     port: parseInt(process.env.CLIENT_PORT, 10),
     open: process.env.OPEN_BROWSER === 'true' ? true : false,

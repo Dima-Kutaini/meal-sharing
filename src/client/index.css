@@ -6,9 +6,12 @@
 }
 
 #root {
-  padding-left: 30%;
-  padding-right: 30%;
-  height: 100vh;
+  /* padding-left: 30%;
+  padding-right: 30%; */
+
+  padding-left: 10px;
+  padding-right: 10px;
+
 }
 
 body {
@@ -16,7 +19,7 @@ body {
   font-size: 17px;
 }
 
-ul {
+/* ul {
   list-style: none;
   padding: 0;
   margin: 0;
@@ -32,15 +35,17 @@ button {
   border-radius: 8px;
   border-width: 0px;
   font-weight: 295;
-  color: rgb(255, 255, 255);
+  /* color: rgb(255, 255, 255); */
+  /* color: chartreuse;
   padding: 5px;
-  font-size: 17px;
-}
+  font-size: 17px; */
+/* }  */
 
 @media screen and (max-width: 1400px) {
   #root {
-    padding-left: 30%;
-    padding-right: 30%;
+     padding-left: 30%;
+    padding-right: 30%; 
+    
   }
 }
 

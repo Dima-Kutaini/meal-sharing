@@ -1,3 +1,97 @@
-* {
-    box-sizing: border-box;
+  #root {
+    margin: 0;
+  }
+ 
+.search-container{
+  margin-top: 30px;
+margin-left: 200px;
+}
+/* meals-list */
+.addMealButn{
+  background-color:rgb(175, 205, 172) ;
+  margin-left: 5px;
+  height: 35px;
+  font-size: 18px;
+  border: none;
+}
+.meal-img{
+  display: flex;
+  flex-grow: 100%;
+  width:200px; 
+  height: 125px; 
+  
+}
+.meals-list {
+  width: 100%;
+
+}
+
+.list-title {
+  font-size: 30px;
+  font-weight: bold;
+  font-family: arial;
+  font-weight: bold;
+  margin-bottom: 20px;
+ 
+}
+
+.list-container {
+ width: 80%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px; 
+ grid-auto-rows: minmax(100px, auto);
+    list-style-type:none; 
+}
+
+.list-container li { 
+  margin: 10px;
+  justify-content:center;
+   border-radius: 1px ;
+  background-color:rgb(201, 222, 200) ;
+
+  
+ 
+}  
+.list-container img{
+  width: 100%;
+height: 5%;
+}
+
+.item-container{
+  display: block;
+   background-color:rgb(169, 217, 169) ; 
+   text-align: center;
+  align-items: center;
+ }  
+ .item-container li h2 {
+  font-size: 18px;
+  font-weight: bold bold;
+
+}
+
+.item-container li p {
+  margin-bottom: 10px;
+  padding: 5px 0;
+
+} 
+button{
+  background-color:rgb(175, 190, 180);
+  height: 35px;
+  font-size: 18px;
+  margin-bottom: 10px;
+  border: none;
+}
+@media screen and (max-width: 1400px) {
+  #root {
+    padding-left: 30%;
+    padding-right: 30%;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  #root {
+    padding-left: 0;
+    padding-right: 0;
+  }
 }
