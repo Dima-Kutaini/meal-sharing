@@ -9,7 +9,7 @@ CREATE TABLE `meals` (
   `idmeals` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(45) DEFAULT NULL,
   `number_of_guests` int(11) DEFAULT NULL,
-   `date` dateTime,
+  `date` dateTime,
   PRIMARY KEY (`idmeals`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6;
 

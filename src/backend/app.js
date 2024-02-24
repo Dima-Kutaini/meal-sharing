@@ -1,12 +1,14 @@
-const express = require("express");
+/** @format */
+
+const express = require('express');
 const app = express();
 const router = express.Router();
-const path = require("path");
+const path = require('path');
 const knex = require('./database');
-const mealsRouter = require("./api/meals");
-const buildPath = path.join(__dirname, "../../dist");
+const mealsRouter = require('./api/meals');
+const buildPath = path.join(__dirname, '../../dist');
 const port = process.env.PORT || 3000;
-const cors = require("cors");
+const cors = require('cors');
 
 // For week4 no need to look into this!
 // Serve the built client html
@@ -18,9 +20,11 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 app.use(cors());
+router.use('/meals', mealsRouter);
 
-router.use("/meals", mealsRouter);
-
+router.get('/', (req, res) => {
+  res.send('Hi friend');
+});
 //Respond with all meals in the future
 //(relative to the when datetime):
 router.get('/future-meals', async (req, res) => {
@@ -46,6 +50,7 @@ router.get('/past-meals', async (req, res) => {
   SELECT * FROM meals
    WHERE date < NOW()`
     );
+
     res.json(pastMeals);
   } catch (error) {
     throw error;
@@ -75,7 +80,7 @@ router.get('/first-meals', async (req, res) => {
    `
     );
     if (firstMeals.length === 0) {
-      res.status(400).json({ error: 'There are no meals' });
+      res.status(404).json({ error: 'There are no meals' });
     }
     res.json(firstMeals);
   } catch (error) {
@@ -91,7 +96,7 @@ router.get('/last-meals', async (req, res) => {
    `
     );
     if (lastMeals.length === 0) {
-      res.status(400).json({ error: 'There are no meals' });
+      res.status(404).json({ error: 'There are no meals' });
     }
     res.json(lastMeals);
   } catch (error) {
@@ -99,15 +104,14 @@ router.get('/last-meals', async (req, res) => {
   }
 });
 
-
 if (process.env.API_PATH) {
   app.use(process.env.API_PATH, router);
 } else {
-  throw "API_PATH is not set. Remember to set it in your .env file"
+  throw 'API_PATH is not set. Remember to set it in your .env file';
 }
 
 // for the frontend. Will first be covered in the react class
-app.use("*", (req, res) => {
+app.use('*', (req, res) => {
   res.sendFile(path.join(`${buildPath}/index.html`));
 });
 
