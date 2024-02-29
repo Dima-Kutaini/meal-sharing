@@ -70,21 +70,26 @@ const HomePage = () => {
         <div className="content-container">
           <div className="content_1">
             <h2> Welcome to our food website</h2>
-            <p>Discover delicious meals crafted with love.</p>
-            <img
-              src="https://cdn.phuket.net/bucket/mainsite/size/595/348/2021/05/330311813_1380777356080880_2215842156640306960_n.jpg"
-              width={400}
-              height={350}
-              gab={10}
-            />
+            <p>
+              Discover delicious meals crafted with love..
+              <br />
+              Explore our diverse menu featuring a wide range of culinary
+              delights from around the world. <br />
+              Read reviews from our satisfied customers and discover their
+              favorite dishes.
+              <br />
+              Book your table now and experience exceptional dining with us.
+            </p>
           </div>
         </div>
-        <img
-          className="img"
-          src="https://images.unsplash.com/photo-1560684352-8497838a2229?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxleHBsb3JlLWZlZWR8M3x8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1400&q=60"
-          width={500}
-          height={400}
-        />
+        <div className="img-wrapper">
+          <img
+            className="img"
+            src="https://images.unsplash.com/photo-1564671165093-20688ff1fffa?w=1400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fG1lYWx8ZW58MHx8MHx8fDA%3D"
+          width="300px"
+          hight="300px"
+          />
+        </div>
       </div>
 
       <footer>
@@ -107,7 +112,9 @@ const HomePage = () => {
               fgColor="black"
             />
           </div>
-          <p className="author">Created by Dima Kutaini@ 2023</p>
+          <p className="author">
+            Created by <strong> Dima Kutaini</strong> &copy; 2023
+          </p>
         </div>
       </footer>
     </div>
