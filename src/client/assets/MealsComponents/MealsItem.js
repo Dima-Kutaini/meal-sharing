@@ -14,13 +14,15 @@ function MealsItem({ meal, selectedMealId, setSelectedMealId }) {
     <div className="item-container">
       <li key={meal.id}>
         <Link to={`/meals/${meal.id}`}>
-          <img
-            className="meal-img"
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRb9gI8KOLYzDjFc51rYbeq9gkit9sDO_kKtQ&usqp=CAU"
-            alt="img"
-            width="100"
-            height="100"
-          />
+          <div className="mealimg-container">
+            <img
+              className="meal-img"
+              src="https://icon2.cleanpng.com/20180331/ezq/kisspng-catering-food-computer-icons-logo-event-management-catering-5abf487c5eb658.714031151522485372388.jpg"
+              alt="img"
+              width="100"
+              height="40"
+            />
+          </div>
         </Link>
         {/* <Stars rating={rating} /> */}
 

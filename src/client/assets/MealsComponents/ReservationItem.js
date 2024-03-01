@@ -7,10 +7,12 @@ const ReservationItem = ({ reservation }) => {
     <div className=" reservation-card">
       <h3 className="title">{reservation.title}</h3>
       <p className="persons-number">
-        {' '}
-        number of persons: {reservation.number_of_guests}
+        Number of persons: {reservation.number_of_guests}
       </p>
-      <p className="date">date·{reservation.created_date}</p>
+      <p className="date">
+        <strong>Date:  </strong>
+        {new Date(reservation.created_date).toLocaleString()}
+      </p>
     </div>
   );
 };

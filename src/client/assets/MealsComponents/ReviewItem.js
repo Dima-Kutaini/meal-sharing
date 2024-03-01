@@ -25,7 +25,10 @@ function ReviewItem({ review }) {
     <div className="review-item">
       <h3 className="review-title">{review.title}</h3>
       <p className="review-description">{review.description}</p>
-      <p className="review-date"> created in:{review.created_date}</p>
+      <p className="review-date">
+        {' '}
+        Created on: {new Date(review.created_date).toLocaleDateString()}
+      </p>
       <div className="review-stars"> {renderStars()}</div>
     </div>
   );

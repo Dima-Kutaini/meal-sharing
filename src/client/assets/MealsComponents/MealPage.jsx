@@ -54,10 +54,10 @@ const MealPage = () => {
           <p> date: {meal.created_date}</p>
           <div className="button">
             <Link to={`/meals/${id}/review`}>
-              <button className="but1">add review</button>
+              <button className="butn">add review</button>
             </Link>
             <Link to={`/meals/${id}/Reservation`}>
-              <button className="but2"> add reservation</button>
+              <button className="butn"> add reservation</button>
             </Link>
           </div>
         </div>

@@ -121,9 +121,8 @@ const MealsList = ({ limit }) => {
           <option value="desc">Descending</option>
         </select>
       </div> */}
-
+      <h1 className="list-title">Meals List</h1>
       <div className="meals-container">
-        <h1 className="list-title">Meals List</h1>
         {error && <p className="error-message">{error}</p>}
         <div className="meals-list">
           <MealsContext.Provider value={{ meals: filteredMeals }}>
