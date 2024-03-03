@@ -48,16 +48,16 @@ const MealPage = () => {
         <div>
           <p className="description">Description: {meal.description} </p>
           <p className="price">Price: {meal.price} kr</p>
-          <p> location : {meal.location}</p>
-          <p> max Reservation: {meal.max_reservations}</p>
-          <p> Available:{meal.available}</p>
-          <p> date: {meal.created_date}</p>
+          <p> location:  {meal.location}</p>
+          <p> Max Reservation:  {meal.max_reservations}</p>
+          <p> Available: {meal.available}</p>
+          <p> Date: {new Date(meal.created_date).toLocaleDateString()}</p>
           <div className="button">
             <Link to={`/meals/${id}/review`}>
-              <button className="butn">add review</button>
+              <button className="butn">Add review</button>
             </Link>
             <Link to={`/meals/${id}/Reservation`}>
-              <button className="butn"> add reservation</button>
+              <button className="butn"> Add reservation</button>
             </Link>
           </div>
         </div>

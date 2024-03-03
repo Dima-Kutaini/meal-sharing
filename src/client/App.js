@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
 import './assets/MealsComponents/review.css';
 import './assets/MealsComponents/reservation.css';
+import "./assets/MealsComponents/About.css"; 
 import HomePage from './assets/MealsComponents/HomePage';
 import MealsList from './assets/MealsComponents/MealsList';
 import ReviewList from './assets/MealsComponents/ReviewList';
