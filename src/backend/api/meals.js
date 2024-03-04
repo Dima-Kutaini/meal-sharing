@@ -66,21 +66,21 @@ mealsRouter.get('/:id/review', async (req, res) => {
 });
 
 // Returns reservations for a specific meal
-mealsRouter.get('/:id/reservation', async (req, res) => {
+mealsRouter.get('/:id/Reservation', async (req, res) => {
   try {
     const mealId = req.params.id;
 
-    const mealReservation = await knex('reservation')
+    const mealReservation = await knex('Reservation')
       .select(
-        'reservation.id',
-        'reservation.title',
-        'reservation.number_of_guests',
-        'reservation.created_date',
-        'reservation.contact_phonenumber',
-        'reservation.contact_name',
-        'reservation.meal_id'
+        'Reservation.id',
+        'Reservation.title',
+        'Reservation.number_of_guests',
+        'Reservation.created_date',
+        'Reservation.contact_phonenumber',
+        'Reservation.contact_name',
+        'Reservation.meal_id'
       )
-      .join('meals', 'meals.id', 'reservation.meal_id')
+      .join('meals', 'meals.id', 'Reservation.meal_id')
       .where('meals.id', mealId);
 
     res.json(mealReservation);
@@ -117,5 +117,84 @@ mealsRouter.delete('/:id', async (req, res) => {
   }
 });
 
-// Export the mealsRouter
+
+
+//---------------------------------------
+//NOdeJs-week3 Homework
+//-----------------------------------------
+mealsRouter.get('/', async (req, res) => {
+  try {
+    // Retrieve query parameters
+    const {
+      maxPrice,
+      availableReservations,
+      title,
+      dateAfter,
+      dateBefore,
+      limit,
+      sortKey,
+      sortDir,
+    } = req.query;
+
+    // Prepare Knex query based on the query parameters
+    let query = knex.select('*').from('meals');
+
+    // Returns all meals that are cheaper than maxPrice.
+
+    if (maxPrice) {
+      query = query.where('price', '<=', +maxPrice);
+    }
+
+    // Returns all meals that still have available spots left, if true. If false, return meals that have no available spots left.1
+    if (availableReservations === 'true') {
+      query = query.where('available', '>', 0);
+    } else if (availableReservations === 'false') {
+      query = query.where('available', '=', 0);
+    }
+
+    // Returns all meals that partially match the given title.
+    // Rød grød will match the meal with the title Rød grød med fløde
+    if (title) {
+      query = query.where('title', 'like', `%${title}%`);
+    }
+
+    // Returns all meals where the date for when is after the given date.
+    if (dateAfter) {
+      query = query.where('when', '>', new Date(dateAfter));
+    }
+
+    // Returns all meals where the date for when is before the given date.
+    if (dateBefore) {
+      query = query.where('when', '<', new Date(dateBefore));
+    }
+
+    //Returns all meals sorted by the given key.
+    // Allows when, max_reservations and price as keys.
+    //Default sorting order is asc(ending).
+    if (sortKey) {
+      let sortedData;
+      if (sortKey === 'when') {
+        sortedData = 'date';
+      } else if (sortKey === 'max_reservations') {
+        sortedData = 'available';
+      } else if (sortKey === 'price') {
+        sortedData = 'price';
+      }
+      query = query.orderBy(sortedData, sortDir === 'desc' ? 'desc' : 'asc');
+    }
+
+    // Returns the given number of meals.
+    if (limit) {
+      query = query.limit(parseInt(limit));
+    }
+
+    // Execute the query and return the result
+    const meals = await query;
+    res.json(meals);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Error' });
+  }
+});
+
 module.exports = mealsRouter;
