@@ -4,8 +4,9 @@
 
 import React, { useState, useEffect, createContext } from 'react';
 import MealsItem from './MealsItem';
-import ReviewList from './ReviewList';
+// import ReviewList from './ReviewList';
 export const MealsContext = createContext();
+
 
 const MealsList = ({ limit }) => {
   const [meals, setMeals] = useState([]);
@@ -13,34 +14,16 @@ const MealsList = ({ limit }) => {
   const [showAddForm, setShowAddForm] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [sortDirection, setSortDirection] = useState('asc');
-  const [newMeal, setNewMeal] = useState({
-    imageUrls: '',
-    title: '',
-    description: '',
-    price: 0,
-  });
 
   useEffect(() => {
     fetchMeals();
-  }, []);
+  }, [sortDirection]);
 
   async function fetchMeals() {
     try {
-      const response = await fetch('http://localhost:5001/api/meals');
-      // let url = 'http://localhost:5001/api/meals';
-
-      // // Add sort option and sort direction to the URL
-      // if (sortOption === 'highToLow') {
-      //   url += '?sort=highToLow';
-      // } else if (sortOption === 'lowToHigh') {
-      //   url += '?sort=lowToHigh';
-      // }
-
-      // // Append sort direction to the URL
-      // url += `&sortDir=${sortDir}`;
-
-      // const response = await fetch(url);
-
+      const response = await fetch(
+        `http://localhost:5001/api/meals?sortKey=price&sortDir=${sortDirection}`
+      );
       if (!response.ok) {
         throw new Error('Failed to fetch meals');
       }
@@ -57,45 +40,19 @@ const MealsList = ({ limit }) => {
   }
 
   const filteredMeals = meals.filter((meal) => {
-    // return meal.title.toLowerCase().includes(searchQuery.toLowerCase());
     const titleMatch = meal.title
       .toLowerCase()
       .includes(searchQuery.toLowerCase());
-
     return titleMatch;
   });
 
   const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    if (name === 'sortDirection') {
-      setSortDirection(value);
-    } else {
-      setNewMeal((prevMeal) => ({
-        ...prevMeal,
-        [name]: value,
-      }));
-    }
+    const { value } = e.target;
+    setSortDirection(value);
   };
 
   const handleToggleAddForm = () => {
     setShowAddForm(!showAddForm);
-  };
-
-  const handleAddMeal = () => {
-    const newMealItem = {
-      imageUrl: newMeal.imageUrls,
-      title: newMeal.title,
-      description: newMeal.description,
-      price: parseFloat(newMeal.price),
-    };
-    setMeals([...meals, newMealItem]);
-    setNewMeal({
-      imageUrls: '',
-      title: '',
-      description: '',
-      price: 0,
-    });
-    setShowAddForm(false);
   };
 
   return (
@@ -110,17 +67,31 @@ const MealsList = ({ limit }) => {
           onChange={(e) => setSearchQuery(e.target.value)}
         />
       </div>
-      {/* <div className="sort-container">
+      <div className="sort-container">
         <label htmlFor="sortDirection">Sort Direction:</label>
-        <select
-          id="sortDirection"
-          name="sortDirection"
-          value={sortDir}
-          onChange={handleInputChange}>
-          <option value="asc">Ascending</option>
-          <option value="desc">Descending</option>
-        </select>
-      </div> */}
+        <div>
+          <input
+            type="radio"
+            id="asc"
+            name="sortDirection"
+            value="asc"
+            checked={sortDirection === 'asc'}
+            onChange={handleInputChange}
+          />
+          <label htmlFor="asc">Ascending</label>
+        </div>
+        <div>
+          <input
+            type="radio"
+            id="desc"
+            name="sortDirection"
+            value="desc"
+            checked={sortDirection === 'desc'}
+            onChange={handleInputChange}
+          />
+          <label htmlFor="desc">Descending</label>
+        </div>
+      </div>
       <h1 className="list-title">Meals List</h1>
       <div className="meals-container">
         {error && <p className="error-message">{error}</p>}
@@ -131,7 +102,6 @@ const MealsList = ({ limit }) => {
                 <MealsItem
                   key={meal.id}
                   meal={meal}
-                  // onSelectMeal={handleSelectMeal}
                 />
               ))}
             </ul>

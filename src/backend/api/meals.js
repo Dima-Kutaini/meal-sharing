@@ -119,9 +119,6 @@ mealsRouter.delete('/:id', async (req, res) => {
 
 
 
-//---------------------------------------
-//NOdeJs-week3 Homework
-//-----------------------------------------
 mealsRouter.get('/', async (req, res) => {
   try {
     // Retrieve query parameters
@@ -174,11 +171,13 @@ mealsRouter.get('/', async (req, res) => {
     if (sortKey) {
       let sortedData;
       if (sortKey === 'when') {
-        sortedData = 'date';
+        sortedData = 'when';
       } else if (sortKey === 'max_reservations') {
         sortedData = 'available';
       } else if (sortKey === 'price') {
         sortedData = 'price';
+      } else if (sortKey === 'title') {
+        sortedData = 'title';
       }
       query = query.orderBy(sortedData, sortDir === 'desc' ? 'desc' : 'asc');
     }
